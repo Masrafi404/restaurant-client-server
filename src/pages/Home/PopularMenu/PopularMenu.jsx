@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import MenuItem from '../../Shared/MenuItem/MenuItem';
+import useMenu from '../../../hooks/useMenu';
 
 const PopularMenu = () => {
-    const [menu, setMenu] = useState([]);
-    useEffect(() => {
-        fetch('menu.json')
-            .then(res => res.json()) // Add parentheses after res.json
-            .then(data => {
-                const popularItems = data.filter(item => item.category === 'popular');
-                setMenu(popularItems);
-                console.log(popularItems)
-            })
-            .catch(error => {
-                console.log('Error fetching menu:', error);
-            });
-    }, []);
+    const [menu] = useMenu();
+    const popular = menu.filter(item => item.category === 'popular')
+    // const [menu, setMenu] = useState([]);
+    // useEffect(() => {
+    //     fetch('menu.json')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const popularItems = data.filter(item => item.category === 'popular');
+    //             setMenu(popularItems);
+    //             console.log(popularItems)
+    //         })
+    //         .catch(error => {
+    //             console.log('Error fetching menu:', error);
+    //         });
+    // }, []);
 
     return (
         <section className='mb-12'>
@@ -25,7 +28,7 @@ const PopularMenu = () => {
             >
             </SectionTitle>
             <div className='grid md:grid-cols-2 gap-4'>
-                {menu.map(item => (
+                {popular.map(item => (
                     <MenuItem key={item._id} item={item} />
                 ))}
             </div>
