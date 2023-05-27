@@ -1,5 +1,9 @@
 module.exports = {
-  env: { browser: true, es2020: true, node: true },
+  env: { 
+    browser: true, 
+    es2020: true, 
+    node: true,
+  },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -11,9 +15,6 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': 'warn',
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
-    'react/prop-types': 'off',
-    "no-unused-vars": 0
+    "react/prop-types": "off"
   },
 }
